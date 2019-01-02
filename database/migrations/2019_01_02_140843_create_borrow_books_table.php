@@ -18,9 +18,9 @@ class CreateBorrowBooksTable extends Migration
             $table->integer('user_id');
             $table->integer('book_id');
             $table->string('book_title');
-            $table->timestamps('request_date');
-            $table->timestamps('approve_date');
-            $table->timestamps('return_date');
+            $table->string('request_date');
+            $table->string('approve_date');
+            $table->string('return_date');
             $table->integer('status');
             $table->timestamps();
         });

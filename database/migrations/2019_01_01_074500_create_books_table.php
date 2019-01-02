@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->integer('category_id');
             $table->string('description')->nullable();
-            $table->strng('book_cover')->nullable();
+            $table->string('book_cover')->nullable();
             $table->integer('availability')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
