@@ -15,6 +15,13 @@ class CreateBorrowBooksTable extends Migration
     {
         Schema::create('borrow_books', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('book_id');
+            $table->string('book_title');
+            $table->timestamps('request_date');
+            $table->timestamps('approve_date');
+            $table->timestamps('return_date');
+            $table->integer('status');
             $table->timestamps();
         });
     }
