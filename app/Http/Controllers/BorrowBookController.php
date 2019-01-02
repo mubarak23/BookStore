@@ -6,7 +6,11 @@ use App\BorrowBook;
 use Illuminate\Http\Request;
 
 class BorrowBookController extends Controller
-{
+{   
+    protected $borrow_book;
+    public function _constructor(BorrowBook $borrow_book ){
+            $this->borrow_book = $borrow_book;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +26,22 @@ class BorrowBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $data = $request->all();
+        $validate_data = $request->validate([
+            "user_id"   => "required",
+            "book_title" => "required",
+            "request_date" => "required"
+        ]);
+
+        $process_borrow = self::store($data);
+        if($process_borrow){
+            return Response::json(array());
+        }else{
+            return Response::json(array())
+        }
     }
 
     /**
@@ -33,9 +50,21 @@ class BorrowBookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($data)
     {
         //
+        $borrow_book = $this->borrow_book::firstOrCreate([
+                "user_id" => $data["user_id"],
+                "book_id" => $data["book_id"],
+                "book_title" => $data["book_title"],
+                "request_data" => $data["request_data"];
+                "approve_date" => $data["approve_date"];
+                "return_date"  => $data["return_date"];
+                "status"       => $data["status"];
+                "approve_by"   => $data["approve_by"];   
+        ]);
+
+        return $borrow_book;
     }
 
     /**
