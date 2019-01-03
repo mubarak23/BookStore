@@ -157,5 +157,8 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
+        $book_id = Book::destroy($book);
+        return redirect()->route("home");
+        
     }
 }
