@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Jobs\sendEmailVerification;
 use App\User;
 use Illuminate\Http\Request;
+use Crypt, Hash;
 
 class UserController extends Controller
 {
@@ -36,6 +37,19 @@ class UserController extends Controller
 
 		dispatch(new sendEmailVerification($create_user));
 		return $create_user;
+
+	}
+
+	public verify_account($token){
+			$user_id = Crypt::decrypt($token);
+			$verify_account = User::where('id', $user_id)->first();
+			$verify_account->status = 1;
+			$verify_account->save();
+			return redirect()->route('login')->("status", "Your Account has been Verfied, you can now login");
+
+	}
+
+	public function login(){
 		
 	}
 

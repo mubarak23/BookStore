@@ -30,6 +30,6 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->from("mubarakaminu340@gmail")->subject("Account Verfication")->view('view.name');
+        return $this->from("mubarakaminu340@gmail")->subject("Account Verfication")->view('eamil.user.');
     }
 }
