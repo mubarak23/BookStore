@@ -16,9 +16,11 @@ class EmailVerification extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public function __construct($user)
     {
         //
+        $this->user = $user;
     }
 
     /**
@@ -28,6 +30,6 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from("mubarakaminu340@gmail")->subject("Account Verfication")->view('view.name');
     }
 }
