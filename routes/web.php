@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Book Route
+Route::post('book/create', 'BookController@create');
+Route::post('book/edit/{id}', "BookController@edit");
+Route::get("book/{id}", "BookController@show");
+Route::post("book/delete/{id}", "BookController@destroy");
+
+//Borrow Book Rout
