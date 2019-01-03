@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Jobs\sendEmailVerification;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,14 @@ class UserController extends Controller
 	}
 
 	public function store($data){
+		$create_user = new User();
+		$create_user->name = $data["name"];
+		$create_user->email = $data["email"];
+		$create_user->password = bcrypt($data["password"]);
+		$create_user->save();
+
+		dispatch(new sendEmailVerification($create_user));
+		return $create_user;
 		
 	}
 
