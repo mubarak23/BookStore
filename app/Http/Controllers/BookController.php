@@ -105,6 +105,10 @@ class BookController extends Controller
     public function show(Book $book)
     {
         //
+        $title = "single book details";
+        $book_details = Book::find($book);
+        return view("books.book_details")->with(["title" => $title, "book_details" => $book_details]);
+
     }
 
     /**
@@ -159,6 +163,6 @@ class BookController extends Controller
         //
         $book_id = Book::destroy($book);
         return redirect()->route("home");
-        
+
     }
 }

@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('main_home');
+        $title = "Available Books for Borroww";
+        $list_books = Book::paginate(10);
+        $book_count = Book::count();
+        return view('main_home')->with(['title' => $title, 'list_books' => $list_books, 'book_count' => $book_count]);
     }
 }
