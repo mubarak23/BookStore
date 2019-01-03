@@ -116,6 +116,7 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         //
+
     }
 
     /**
@@ -128,6 +129,23 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         //
+        $data = $request->all();
+        $edit_book = Book::find($book);
+        if(!empty($data["book_title"])){
+            $edit_book->title = $data["book_title"]
+        }
+        if(!empty($data["book_description"])){
+            $edit_book->book_description = $data["book_description"];
+        }
+        if(!empty($data["status"])){
+            $edit_book->status = $data["status"];
+        }
+        if(!empty($data["availability"])){
+            $edit_book->availability = $data["availability"];
+        }
+
+        $edit_book->save();
+        return redirect()->route("home");
     }
 
     /**
