@@ -32,6 +32,7 @@ class UserController extends Controller
 		$create_user = new User();
 		$create_user->name = $data["name"];
 		$create_user->email = $data["email"];
+		$create_user->user_role = 2;
 		$create_user->password = bcrypt($data["password"]);
 		$create_user->save();
 
@@ -49,8 +50,9 @@ class UserController extends Controller
 
 	}
 
-	public function login(){
-		
+	public function login(Request $request){
+			$data = $request->all();
+
 	}
 
 }

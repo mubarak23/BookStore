@@ -29,7 +29,7 @@ Route::post("book/delete/{id}", "BookController@destroy");
 
 
 //user Route
-Route::post("user/create", "UserController$create");
-Route::get("user/verify_account/{$token}", "UserController@verify_account");
+Route::post("user/create", "UserController@create");
+Route::get("user/verify_account/{token}", "UserController@verify_account");
 Route::get("user/login", "UserController@login");
 
