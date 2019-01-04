@@ -32,4 +32,8 @@ Route::post("book/delete/{id}", "BookController@destroy");
 Route::post("user/create", "UserController@create");
 Route::get("user/verify_account/{token}", "UserController@verify_account");
 Route::get("user/login", "UserController@login");
+Route::get("user/dashboard", "UserController@user_dashboard");
+
+
+//
 

@@ -66,21 +66,24 @@ class UserController extends Controller
 
 				}else{
 					//check the auth session
-					if(Auth::attempt(["email" => $data["email"], "password" = > $data["password"] ])){
-						
-					}
+				if(Auth::attempt(["email" => $data["email"], "password" = > $data["password"] ])){
 
+						if(Auth::user()->user_role === 2){
+							return redirect()->route("userDashboard");
+						}else if(Auth::user()->user_role === 1){
+							return redirect()->route("adminDashboard");
+						}
+					}
 
 				}
 
 			}
 
+			
+	}
 
-
-			/*if(!empty($data["email"]) & !empty($data["password"])){
-
-			}*/
-
+	public function user_dashboard(){
+		
 	}
 
 }
