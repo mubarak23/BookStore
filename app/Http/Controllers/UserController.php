@@ -53,6 +53,34 @@ class UserController extends Controller
 	public function login(Request $request){
 			$data = $request->all();
 
+			$check_email = User::where("email", $data["email"])->exit();
+
+			if(!$check_email){
+				return redirect()->back()->withInput();
+
+			}else{
+				$check_status = User::where("email", $data["email"])->first();
+
+				if($check_status->status === 0 ){
+					return redirect()->back()->with(["status" => "You Hav Not Vaerify Your Account"]);
+
+				}else{
+					//check the auth session
+					if(Auth::attempt(["email" => $data["email"], "password" = > $data["password"] ])){
+						
+					}
+
+
+				}
+
+			}
+
+
+
+			/*if(!empty($data["email"]) & !empty($data["password"])){
+
+			}*/
+
 	}
 
 }
