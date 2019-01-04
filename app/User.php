@@ -30,8 +30,12 @@ class User extends Authenticatable
 
 
     public function book(){
-        $this->hasMany(Book::class);
+       return $this->hasMany(Book::class);
     }
-    
+
+    public function user_role(){
+       return $this->hasOne(User::class);
+    }
+
 
 }
