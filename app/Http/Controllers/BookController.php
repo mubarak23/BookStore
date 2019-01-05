@@ -36,7 +36,14 @@ class BookController extends Controller
                 'title' => 'required',
                 'category_id'   => 'required'
         ]);
+        if($request->hasfile("book_cover")){
+            $file = $request->file("book_cover");
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move("upload/book_covers", $filename);
+        }
 
+        $data["book_cover"] = $filename;
         $store_book = self::store($data);
         
         if($store_book){
