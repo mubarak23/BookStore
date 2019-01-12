@@ -12,56 +12,71 @@
       <p>
         <a href="#" class="btn btn-primary my-2" >Main call to action</a>
         <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addcontactmodal">
           Add Book
         </button>
         <!-- //modal for showing add book form -->
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-              <form>
-              <div class="form-row">
-                <div class="col col-md-6">
-                  <legend class="col-form-label col-sm-2 pt-0">Book Title</legend>
-                  <input type="text" name="title" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-md-6">
-                  <legend class="col-form-label col-sm-2 pt-0">Book Category</legend>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                    <label class="form-check-label" for="gridRadios1">
-                      First radio
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                    <label class="form-check-label" for="gridRadios2">
-                      Second radio
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                  <legend class="col-form-label col-sm-2 pt-0">Book Description</legend>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-            </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+        <div class="modal fade" id="addcontactmodal" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Add A Plan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-          </div>
-        </div>
+            <div class="modal-body p-4">
+
+                 <form method="POST" action="{{ url('disbursement-plan/create')}}" aria-label="{{ __('Add a Plan') }}">
+                        <div class="form-group mb-3">
+                                <label for="validationCustomUsername">Disbursement Plan Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
+                                    </div>
+                                    <input type="text" name="name_alias" class="form-control" id="DisbursementPan" placeholder="Disbursement Plan" aria-describedby="inputGroupPrepend"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Please choose a Plan Name / Alias.
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="form-group mb-3">
+                                        <label for="validationCustomUsername">Disbursement Description</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend"><i class="fe-file"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control"
+                                            name="description" id="DisbursementDescription" placeholder="Disbursement Description" aria-describedby="inputGroupPrepend"
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Please choose a Disbursement Description.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustomUsername">Disbursement Currency</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
+                                            </div>
+                                            <select name="currency" class="form-control select2" data-toggle="select2" style="width: 80%">
+                                                        <option selected="" value="NGN">NGN</option>
+                                                </select>
+                                        </div>
+                                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
       </p>
     </div>
   </section>
