@@ -41,19 +41,25 @@ class UserController extends Controller
 
 	}
 
-	public verify_account($token){
+	public function verify_account($token){
 			$user_id = Crypt::decrypt($token);
 			$verify_account = User::where('id', $user_id)->first();
 			$verify_account->status = 1;
 			$verify_account->save();
-			return redirect()->route('login')->("status", "Your Account has been Verfied, you can now login");
+			return redirect()->route('login')->with("status", "Your Account has been Verfied, you can now login");
 
+	}
+
+	public function show_login(){
+		$title = "Login Page";
+		return view('user.login')->with(['title'=> $title]);
 	}
 
 	public function login(Request $request){
 			$data = $request->all();
+			 //$email = $data['email'];
 
-			$check_email = User::where("email", $data["email"])->exit();
+            $check_email = User::where("email", "admin@gmail.com")->exists();
 
 			if(!$check_email){
 				return redirect()->back()->withInput();
@@ -66,7 +72,7 @@ class UserController extends Controller
 
 				}else{
 					//check the auth session
-				if(Auth::attempt(["email" => $data["email"], "password" = > $data["password"] ])){
+				if(Auth::attempt(["email" => $data["email"], "password" => $data["password"]])){
 
 						if(Auth::user()->user_role === 2){
 							return redirect()->route("userDashboard");
