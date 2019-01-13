@@ -10,6 +10,10 @@ class UserController extends Controller
 {
     //
 
+    public function show_register(){
+    	return view('user.register');
+    }
+
 	public function create(Request $request){
 		$data = $request->all();
 		$validate_data = $request->validate([
@@ -90,6 +94,12 @@ class UserController extends Controller
 
 	public function user_dashboard(){
 		
+	}
+
+	public function getlogout(){
+		Auth::logout();
+		return redirect()->route('home');
+
 	}
 
 }

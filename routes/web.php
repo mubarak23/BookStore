@@ -29,11 +29,13 @@ Route::post("book/delete/{id}", "BookController@destroy");
 
 
 //user Route
+
 Route::get("/users/login", "UserController@show_login");
-Route::post("user/create", "UserController@create");
-Route::get("user/verify_account/{token}", "UserController@verify_account");
-Route::get("user/login", "UserController@login");
-Route::get("user/dashboard", "UserController@user_dashboard");
+Route::get("users/create", "UserController@show_register");
+Route::post("/users/create", "UserController@create");
+Route::get("/users/verify_account/{token}", "UserController@verify_account");
+Route::post("/users/login", "UserController@login");
+Route::get("/users/dashboard", "UserController@user_dashboard");
 
 
 //
