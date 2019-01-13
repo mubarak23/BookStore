@@ -21,50 +21,64 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myCenterModalLabel">Add A Plan</h4>
+                <h4 class="modal-title" id="myCenterModalLabel">Add A Book</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
 
                  <form method="POST" action="{{ url('disbursement-plan/create')}}" aria-label="{{ __('Add a Plan') }}">
                         <div class="form-group mb-3">
-                                <label for="validationCustomUsername">Disbursement Plan Name</label>
+                                <label for="validationCustomUsername">Bool Title</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
                                     </div>
-                                    <input type="text" name="name_alias" class="form-control" id="DisbursementPan" placeholder="Disbursement Plan" aria-describedby="inputGroupPrepend"
+                                    <input type="text" name="title" class="form-control" id="title" placeholder=" Book Title" aria-describedby="inputGroupPrepend"
                                         required>
                                     <div class="invalid-feedback">
-                                        Please choose a Plan Name / Alias.
+                                        Please choose a Book Title.
                                     </div>
                                 </div>
                             </div>
 
                                 <div class="form-group mb-3">
-                                        <label for="validationCustomUsername">Disbursement Description</label>
+                                        <label for="validationCustomUsername">Book Description</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i class="fe-file"></i></span>
                                             </div>
                                             <input type="text" class="form-control"
-                                            name="description" id="DisbursementDescription" placeholder="Disbursement Description" aria-describedby="inputGroupPrepend"
+                                            name="description" id="Description" placeholder="Book Description" aria-describedby="inputGroupPrepend"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Please choose a Disbursement Description.
+                                                Please choose a Book Description.
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="validationCustomUsername">Disbursement Currency</label>
+                                        <label for="validationCustomUsername">Book Category</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
                                             </div>
-                                            <select name="currency" class="form-control select2" data-toggle="select2" style="width: 80%">
-                                                        <option selected="" value="NGN">NGN</option>
+                                            <select name="category" class="form-control select2" data-toggle="select2" style="width: 80%">
+                                              @forelse($list_category as $category)
+                                                        <option selected="" value="{{ $category->id}}">{{$category->name}}</option>
+                                                        @empty
+                                                no category added yet.
+                                                @endforelse
                                                 </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="validationCustomUsername">Book Cover</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
+                                            </div>
+                                            <input type="file" class="book_cover" id="customFile">
+                                          <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
 
