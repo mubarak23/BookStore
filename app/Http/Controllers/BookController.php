@@ -28,15 +28,30 @@ class BookController extends Controller
      * collect book details and validate it
      * @return \Illuminate\Http\Response
      */
-    public function create(Request, $request)
+    public function create(Request $request)
     {
         //
         $data = $request->all();
+        //return $data;
+
         $validate_data = $request->validate([
                 'title' => 'required',
                 'category_id'   => 'required'
         ]);
+
+         ///if ($request->hasFile('book_cover')) {
+        //return $image = $request->file('book_cover');
+        /*$name = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/upload/book_covers/');
+        $image->move($destinationPath, $name);
+        $this->save();*/
+        //return back()->with('success','Image Upload successfully');
+       //}
+
+
         if($request->hasfile("book_cover")){
+            return $request->hasfile('book_cover');
+
             $file = $request->file("book_cover");
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
@@ -47,13 +62,17 @@ class BookController extends Controller
         $store_book = self::store($data);
         
         if($store_book){
+            return redirect()->route("home");
+        }    
+
+       /* if($store_book){
             return response($this->response);
         }else{
            $response["message"] = "An Error occured while saving book details";
            $response["status"] = false; 
            return response($this->response);
 
-        }
+        }*/
 
         /*if($store){
             return Response::json(array(
@@ -79,7 +98,7 @@ class BookController extends Controller
     public function store($data)
     {
         //
-        $store_book = $this->book::firstOrCreate([
+        /*$store_book = $this->book::firstOrCreate([
             "title" => $data["title"],
             "category_id" => $data["category_id"],
             "description"   => $data["description"],
@@ -91,15 +110,16 @@ class BookController extends Controller
             $this->response["new_book"] = $store_book;
             $this->response["status"] = true;
             return response($this->response); 
-        }
-        /*$store_book = New Book;
+        }*/
+
+        $store_book = New Book;
         $store_book->title = $data['title'];
         $store_book->category_id = $data['category_id'];
         $store_book->description = $data['description'];
         $store_book->book_cover = $data['book_cover'];
         $store_book->status = $data['status'];
         $store_book->save();
-        return $store_book;*/
+        return $store_book;
 
     }
 
@@ -143,7 +163,7 @@ class BookController extends Controller
         $data = $request->all();
         $edit_book = Book::find($book);
         if(!empty($data["book_title"])){
-            $edit_book->title = $data["book_title"]
+            $edit_book->title = $data["book_title"];
         }
         if(!empty($data["book_description"])){
             $edit_book->book_description = $data["book_description"];

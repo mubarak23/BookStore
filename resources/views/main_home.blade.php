@@ -26,7 +26,8 @@
             </div>
             <div class="modal-body p-4">
 
-                 <form method="POST" action="{{ url('disbursement-plan/create')}}" aria-label="{{ __('Add a Plan') }}">
+                 <form method="POST" action="{{ url('book/create')}}" aria-label="{{ __('Add a Plan') }}">
+                  @csrf
                         <div class="form-group mb-3">
                                 <label for="validationCustomUsername">Bool Title</label>
                                 <div class="input-group">
@@ -62,7 +63,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
                                             </div>
-                                            <select name="category" class="form-control select2" data-toggle="select2" style="width: 80%">
+                                            <select name="category_id" class="form-control select2" data-toggle="select2" style="width: 80%">
                                               @forelse($list_category as $category)
                                                         <option selected="" value="{{ $category->id}}">{{$category->name}}</option>
                                                         @empty
@@ -77,8 +78,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i class="fe-briefcase"></i></span>
                                             </div>
-                                            <input type="file" class="book_cover" id="customFile">
-                                          <label class="custom-file-label" for="customFile">Choose file</label>
+                                            <input type="file" class="book_cover" name="book_cover" id="customFile">
+                                          
                                         </div>
                                     </div>
 
